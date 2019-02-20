@@ -3,15 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-scripts": "2.1.5"
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.5",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext=js --ext=jsx .",
+    "lint:src": "eslint --ext=js --ext=jsx src",
+    "lint:server": "eslint --ext=js server",
+    "lint:fix": "eslint --ext=js --ext=jsx --fix .",
+    "lint:fix-src": "eslint --ext=js --ext=jsx --fix src",
+    "lint:fix-server": "eslint --ext=js --fix server"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +32,30 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.4",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "npm run lint:fix",
+      "npm run lint",
+      "git add"
+    ],
+    "**/*.jsx": [
+      "npm run lint:fix",
+      "npm run lint",
+      "git add"
+    ]
+  }
 }
